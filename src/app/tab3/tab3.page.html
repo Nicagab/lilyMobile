@@ -1,15 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-icon name="person-circle-outline" size="large"></ion-icon>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large"></ion-title>
+      <ion-title> Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <a [routerLink]="['/perfil']">Editar Perfil</a><br>
+    <a [routerLink]="['/sobre']">Sobre nós</a>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle><ion-icon size="large" name="person-circle-outline"></ion-icon></ion-menu-toggle>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
+  <ion-content class="ion-padding"> Body da página </ion-content>
+</div>

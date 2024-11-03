@@ -1,0 +1,74 @@
+html{
+    --primary_color: #C99AFB;
+    --secondary_color: #9f99fd;
+    --terciary_color: #55209E;
+    --quaternary_color: #978897;
+    --quintenary_color: #9BC995;
+    --sextenary_color: #E4B9FC;
+  }
+
+.main{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../imgs/login1.jpg');
+}
+
+.container{
+    display: flex;
+    color: black;
+    width: 80vw;
+    height: fit-content;
+    padding: 4vw;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.containerCadastro{
+    display: flex;
+    width: 90%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+.form-item{
+    --background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    outline: none;
+    --color: black;
+}
+
+.form-input{
+    background-color: white;
+    outline: none;
+}
+
+ion-button{
+    --background: #55209E;
+    --color: white;
+}
+
+span{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-checkbox{
+    --checkbox-background: white;
+    --border-color: black;
+}
+
+a{
+    color: blue;
+}
+
+a:hover{
+    cursor: pointer;
+}
