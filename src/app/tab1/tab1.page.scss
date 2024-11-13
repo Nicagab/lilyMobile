@@ -1,11 +1,20 @@
 .calendario_section{
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    flex-direction: column;
     background-color: #f2f2f2;
     color: black;
     align-items: center;
     justify-content: center;
+}
+.funcoes{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 95%;
+    margin: 1vh;
+    gap: 3vh;
 }
 .calendario{
     display: flex;
@@ -82,4 +91,41 @@
     margin: 0.5vw;
     width: 5vh;
     height: 5vh;
+}
+.legenda{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1vh;
+}
+.itemLegenda{
+    display: flex;
+    gap: 0.5vw;
+    align-items: center;
+    justify-content: center;
+}
+.itemLegenda div{
+    display: flex;
+    width: 3vh;
+    height: 3vh;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.menstrual{
+    background-color: red;
+}
+.folicular{
+    background-color: greenyellow;
+}
+.ovulacao{
+    background-color: yellow;
+}
+.lutea{
+    background-color: white;
+}
+
+.disabled{
+    display: none;
 }

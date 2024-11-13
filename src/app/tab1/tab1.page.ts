@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import Dia from '../interfaces/DiaI';
 
 @Component({
@@ -9,16 +10,64 @@ import Dia from '../interfaces/DiaI';
 export class Tab1Page {
 
   meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  
   navM = 0;
   dias: Dia[] = [];
   hoje = new Date();
   anoAtual = 0;
   mesAtual = 0;
+  navH = 0;
+
+  public helpInfos = [
+    { header: 'Teste1', subHeader: 'teste1', message: 'mensagem1' },
+    { header: 'Teste2', subHeader: 'teste2', message: 'mensagem2' },
+    { header: 'Teste3', subHeader: 'teste3', message: 'mensagem3' }
+  ];
+
+  constructor(private alertController: AlertController) {
+    this.gerarDias();
+  }
+
+  async showCalendarAlert(){
+    const alert = await this.alertController.create({
+
+    })
+    await alert.present()
+  }
+
+  async showHelpAlert() {
+    const alert = await this.alertController.create({
+      header: this.helpInfos[this.navH].header,
+      subHeader: this.helpInfos[this.navH].subHeader,
+      message: this.helpInfos[this.navH].message,
+      buttons: [
+        {
+          text: 'Back',
+          handler: () => {
+            if (this.navH > 0) {this.navH--;
+            this.showHelpAlert();}
+          },
+          cssClass: this.navH < 1 ? 'disabled' : '' 
+        },
+        {
+          text: this.navH === this.helpInfos.length-1 ? 'Ok' : 'Next',
+          role: this.navH === this.helpInfos.length-1 ? 'confirm' : '',
+          handler: () => {
+            if (this.navH < this.helpInfos.length - 1) {
+              this.navH++;
+              this.showHelpAlert(); 
+            } else {
+              this.navH = 0;
+            }
+          }
+        },
+      ]
+    });
+
+    await alert.present();
+  }
 
   gerarDias() {
     this.dias.length = 0;
-
     const dataAtualizada = new Date(this.hoje.getFullYear(), this.hoje.getMonth() + this.navM, 1);
     this.anoAtual = dataAtualizada.getFullYear();
     this.mesAtual = dataAtualizada.getMonth();
@@ -41,10 +90,6 @@ export class Tab1Page {
     while (this.dias.length % 7 !== 0) {
       this.dias.push({ classe: 'nullday' });
     }
-  }
-
-  constructor() {
-    this.gerarDias();
   }
 
   avancarMes() {
