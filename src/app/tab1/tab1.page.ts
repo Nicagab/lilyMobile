@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, MenuController } from '@ionic/angular';
 import Dia from '../interfaces/DiaI';
-import { addIcons } from 'ionicons';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -25,7 +25,7 @@ export class Tab1Page {
     { header: 'Teste3', subHeader: 'teste3', message: 'mensagem3' }
   ];
 
-  constructor(private alertController: AlertController, private menuController: MenuController) {
+  constructor(private alertController: AlertController, private menuController: MenuController, private authService: AuthService) {
     this.gerarDias();
   }
 
@@ -48,7 +48,7 @@ export class Tab1Page {
             if (this.navH > 0) {this.navH--;
             this.showHelpAlert();}
           },
-          cssClass: this.navH < 1 ? 'disabled' : '' 
+          cssClass: this.navH < 1 ? 'disabled' : ''
         },
         {
           text: this.navH === this.helpInfos.length-1 ? 'Ok' : 'Next',
@@ -56,7 +56,7 @@ export class Tab1Page {
           handler: () => {
             if (this.navH < this.helpInfos.length - 1) {
               this.navH++;
-              this.showHelpAlert(); 
+              this.showHelpAlert();
             } else {
               this.navH = 0;
             }
