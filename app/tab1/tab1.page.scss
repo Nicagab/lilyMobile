@@ -1,0 +1,214 @@
+html{
+    --primary_color: #C99AFB;
+    --secondary_color: #9f99fd;
+    --terciary_color: #55209E;
+    --quaternary_color: #978897;
+    --quintenary_color: #9BC995;
+    --sextenary_color: #E4B9FC;
+  }
+
+.calendario_section{
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+.funcoes{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 95%;
+    margin: 1vh;
+    gap: 3vh;
+}
+.calendario{
+    display: flex;
+    width: 95vw;
+    flex-direction: column;
+    margin: 1vw;
+}
+.calendario_header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+.calendario_info{
+    display: flex;
+    width: 100%;
+    padding: 1vw;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #C99AFB;
+}
+.calendario_info span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calendario_weekdays{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.weekday{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vh;
+    margin: 0.5vw;
+}
+.calendario_body{
+    display: flex;
+    width: 100%;
+    padding: 0.3vw;
+    height: fit-content;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.day{
+    display: flex;
+    width: 12vw;
+    height: 12vw;
+    margin: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+}
+.hoje{
+    background-color: #55209E;
+    color: white;
+}
+.nullday{
+    display: flex;
+    margin: 0.5vw;
+    width: 12vw;
+    height: 12vw;
+}
+.legenda{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1vh;
+}
+.itemLegenda{
+    display: flex;
+    gap: 0.5vw;
+    align-items: center;
+    justify-content: center;
+}
+.itemLegenda div{
+    display: flex;
+    width: 3vh;
+    height: 3vh;
+    // border: 1px solid black;
+    border-radius: 50%;
+}
+.menstrual{
+    background-color: #ec7171;
+}
+.folicular{
+    background-color: #71ec71;
+}
+.ovulacao{
+    background-color: #eaec71;
+}
+.lutea{
+    background-color: white;
+}
+.menuDiaHeader{
+    --background: #C99AFB;
+}
+.menuDiaBody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    gap: 1vh;
+}
+.emocional{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.emocional_body{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5vh;
+    flex-direction: row;
+}
+.emocional_body div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.sintomas{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sintomas_body{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.sintoma{
+    display: flex;
+    flex-direction: column;
+    width: 7vh;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3vh;
+}
+.anotacoes{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+textarea{
+    background-color: white;
+}
+ion-button{
+    --background: #C99AFB;
+    --color: white;
+}
+.disabled{
+    display: none;
+}
