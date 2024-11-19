@@ -3,6 +3,7 @@ import UsuarioSimples from '../interfaces/UsuarioSimplesI';
 import UsuarioCompleto from '../interfaces/UsuarioCompletoI';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,14 +15,16 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  async getUsuarios(){
-    await this.httpClient.get(`${this.api}/usuario`).forEach((res) => this.usuarios.push(res))
+  async getUsuarios() {
+    this.usuarios = await this.httpClient.get<UsuarioSimples[]>(`${this.api}/usuario`).toPromise() || []
   }
 
-  logar(username: string, senha: string){
-    this.getUsuarios()
+  async logar(username: string, senha: string){
+    await this.getUsuarios()
 
-    if(this.usuarios.find((user) => user.username === username && user.senha === senha)){
+    const usuarioEncontrado = this.usuarios.find((user) => user.username === username && user.senha === senha)
+
+    if(usuarioEncontrado){
       this.usuarioSimples = this.usuarios.filter((user) => user.username==username)[0]
     } else {
       console.log('Usuario não encontrado')
@@ -34,6 +37,10 @@ export class AuthService {
     } else {
       return false
     }
+  }
+
+  getUserInfo(){
+    return this.usuarioSimples;
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import UsuarioSimples from '../interfaces/UsuarioSimplesI';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(private authService: AuthService) {
+    this.getUserInfo()
+  }
 
+  usuario: UsuarioSimples = {}
+
+  getUserInfo(){
+    this.usuario = this.authService.getUserInfo()
+    console.log(this.usuario)
+  }
 }

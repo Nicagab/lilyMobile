@@ -13,8 +13,8 @@ export class LoginPage  {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  login(){
-    this.authService.logar(this.username, this.senha)
+  async login(){
+    await this.authService.logar(this.username, this.senha)
     if(this.authService.isLogged()){
       this.router.navigate(['tabs'])
     }
