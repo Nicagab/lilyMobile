@@ -10,6 +10,7 @@
           class="form-input"
           label="Nome Completo:"
           labelPlacement="floating"
+          [(ngModel)]="usuario.nome"
         ></ion-input
       ></ion-item>
       <ion-item class="form-item"
@@ -19,6 +20,7 @@
           class="form-input"
           label="Nome de usuário:"
           labelPlacement="floating"
+          [(ngModel)]="usuario.username"
         ></ion-input
       ></ion-item>
       <ion-item class="form-item"
@@ -28,6 +30,7 @@
           class="form-input"
           label="Email:"
           labelPlacement="floating"
+          [(ngModel)]="usuario.email"
         ></ion-input
       ></ion-item>
       <ion-item class="form-item"
@@ -37,6 +40,7 @@
           class="form-input"
           label="Senha"
           labelPlacement="floating"
+          [(ngModel)]="usuario.senha"
         ></ion-input
       ></ion-item>
       <ion-item class="form-item"
@@ -55,6 +59,7 @@
           class="form-input"
           label="Telefone:"
           labelPlacement="floating"
+          [(ngModel)]="telefoneC"
         ></ion-input
       ></ion-item>
       <ion-item class="form-item"
@@ -64,10 +69,11 @@
           class="form-input"
           label="Data Nascimento:"
           labelPlacement="floating"
+          [(ngModel)]="usuario.dataNasc"
         ></ion-input
       ></ion-item>
         <span><ion-label>Aceito os <a>termos</a> de uso</ion-label><ion-checkbox class="form-checkbox"></ion-checkbox></span>
-      <ion-button expand="block">Cadastrar</ion-button>
+      <ion-button expand="block" (click)="criarUsuario()">Cadastrar</ion-button>
     </section>
   </div>
 </main>

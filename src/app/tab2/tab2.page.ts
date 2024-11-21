@@ -15,6 +15,12 @@ export class Tab2Page {
 
   usuario: UsuarioSimples = {}
 
+  redirecionarLogin(){
+    if(!this.authService.isLogged()){
+
+    }
+  }
+
   getUserInfo(){
     this.usuario = this.authService.getUserInfo()
     console.log(this.usuario)
