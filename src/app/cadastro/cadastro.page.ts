@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import UsuarioSimples from '../interfaces/UsuarioSimplesI';
 import Telefone from '../interfaces/TelefoneI';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,7 +11,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class CadastroPage {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { 
+    if(this.authService.isLogged()){
+      this.router.navigate(['tabs'])
+    }
+  }
 
   usuario: UsuarioSimples = {}
   telefoneC = ''

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+
 import UsuarioSimples from '../interfaces/UsuarioSimplesI';
+import Calendario from '../interfaces/CalendarioI';
 
 @Component({
   selector: 'app-tab2',
@@ -14,6 +16,9 @@ export class Tab2Page {
   }
 
   usuario: UsuarioSimples = {}
+  calendario: Calendario = {}
+  hoje = new Date()
+  fase = ''
 
   redirecionarLogin(){
     if(!this.authService.isLogged()){
@@ -23,6 +28,33 @@ export class Tab2Page {
 
   getUserInfo(){
     this.usuario = this.authService.getUserInfo()
-    console.log(this.usuario)
+    console.table(this.usuario)
+    this.getCalendarioInfo()
   }
+
+  async getCalendarioInfo(){
+    this.calendario = await this.authService.returnCalendario(this.usuario.idUsuario)
+    console.log(this.calendario)
+    if(this.calendario.idCalendario){
+      this.fase = this.calcularFase(this.hoje, this.calendario.inicioCiclo, this.calendario.duracao)
+      console.log(this.fase)
+    }
+    
+  }
+
+  calcularFase(dia: any, inicioCiclo: any, duracao: any) {
+    const dataAtual = new Date(dia);
+    const dataInicioCiclo = new Date(inicioCiclo);
+
+    console.log(dataAtual)
+
+    const diasDesdeInicio = Math.floor((dataAtual.getTime() - dataInicioCiclo.getTime()) / (1000 * 60 * 60 * 24));
+    const diaCiclo = diasDesdeInicio % 28;
+
+    if (diaCiclo >= 0 && diaCiclo < Number(duracao)) return 'menstrual';
+    if (diaCiclo === 13) return 'ovulacao';
+    if (diaCiclo >= 9 && diaCiclo <= 14) return 'folicular';
+    return 'lutea';
 }
+}
+ 

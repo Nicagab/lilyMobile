@@ -20,5 +20,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding"> Teste: {{usuario.username}} </ion-content>
+  <ion-content> 
+    <section class="mainContainer" *ngIf="!calendario.idCalendario">
+      <div class="faseCirculo">Calendário não encontrado</div>
+      <h3>Crie seu calendario menstrual e receba informações sobre seu dia em base no seu ciclo</h3>
+    </section>
+  <section class="mainContainer" *ngIf="calendario.idCalendario">
+    <div class="faseCirculo {{fase}}">{{fase}}</div>
+    <div class="informações">
+      <ion-chip color="danger">Aquelas infos la</ion-chip>
+    </div>
+    
+  </section>  
+  </ion-content>
 </div>

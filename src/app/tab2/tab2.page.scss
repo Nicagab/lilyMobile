@@ -4,3 +4,46 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
+.mainContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 80vh;
+    padding: 1.5vw;
+    background-color: white;
+    color: black;
+    flex-direction: column;
+    gap: 2vw;
+}
+h3{
+    text-align: center;
+}
+.faseCirculo{
+    display: flex;
+    width: 30vh;
+    height: 30vh;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    border-radius: 50%;
+    color: black;
+    font-size: 2rem;
+    border: 5vw solid gray;
+}
+
+.menstrual{
+    border-top: 5vw solid #ec7171;
+}
+
+.folicular{
+    border-right: 5vw solid #71ec71;
+}
+
+.ovulacao{
+     border-left: 5vw solid #eaec71;
+}
+
+.lutea{
+   border-bottom: 5vw solid whitesmoke; 
+}

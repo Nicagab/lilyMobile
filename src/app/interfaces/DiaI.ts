@@ -1,9 +1,9 @@
-interface Dia {
-    numero?: number;
+interface Dia{
+    idDia?: number;
     dataZ?: string;
-    classe?: string; 
     emocional?: string;
     anotacao?: string;
+    idCalendario?: number;
 }
 
-export default Dia
+export default Dia;

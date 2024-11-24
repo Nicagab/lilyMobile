@@ -20,5 +20,30 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding"> Body da página </ion-content>
+  <ion-content>
+    <section class="mainContainer">
+      <div class="pesquisar">
+        <ion-item> 
+          <ion-icon name="search-outline"></ion-icon> 
+          <ion-input type="search" [(ngModel)]="pesquisa" (ngModelChange)="getArtigosF()"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="artigos" *ngIf="pesquisa">
+        <div class="artigo" *ngFor="let artigoF of artigosF">
+          <h4>{{artigoF.titulo}}</h4>
+          <pre>{{artigoF.resumo}}</pre>
+          <ion-chip color="{{artigoF.palavraChave === 'menstruacao' ? 'danger' : ((artigoF.palavraChave === 'saude' ? 'secondary' : 'success'))}}">{{artigoF.palavraChave}}</ion-chip>
+        </div>
+      </div>
+
+      <div class="artigos" *ngIf="!pesquisa">
+        <div class="artigo" *ngFor="let artigo of artigos">
+          <h4>{{artigo.titulo}}</h4>
+          <pre>{{artigo.resumo}}</pre>
+          <ion-chip color="{{artigo.palavraChave === 'menstruacao' ? 'danger' : ((artigo.palavraChave === 'saude' ? 'secondary' : 'success'))}}">{{artigo.palavraChave}}</ion-chip>
+        </div>
+      </div>
+    </section>
+  </ion-content>
 </div>
