@@ -22,7 +22,18 @@
 
   <ion-content>
     <section class="mainContainer">
-      
+      <div class="publicar">
+        <div class="imgProfile"><ion-icon name="person-circle-outline"></ion-icon> <p>{{usuario.username}}</p></div>
+        <ion-input label="Título publicação" labelPlacement="stacked" type="text" [(ngModel)]="publicacao.titulo"></ion-input>
+        <textarea [(ngModel)]="publicacao.texto"></textarea>
+        <ion-icon name="send" (click)="createPublicacao()"></ion-icon>
+      </div>
+      <div class="publicacoes">
+        <div class="publicacao" *ngFor="let publi of publicacoes">
+          <h3>{{publi.titulo}} - {{publi.dataPostagem}}</h3>
+          <pre>{{publi.texto}}</pre>
+        </div>
+      </div>
     </section>
   </ion-content>
 </div>

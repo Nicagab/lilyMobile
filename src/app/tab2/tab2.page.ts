@@ -37,7 +37,6 @@ export class Tab2Page {
     console.log(this.calendario)
     if(this.calendario.idCalendario){
       this.fase = this.calcularFase(this.hoje, this.calendario.inicioCiclo, this.calendario.duracao)
-      console.log(this.fase)
     }
     
   }
@@ -45,8 +44,6 @@ export class Tab2Page {
   calcularFase(dia: any, inicioCiclo: any, duracao: any) {
     const dataAtual = new Date(dia);
     const dataInicioCiclo = new Date(inicioCiclo);
-
-    console.log(dataAtual)
 
     const diasDesdeInicio = Math.floor((dataAtual.getTime() - dataInicioCiclo.getTime()) / (1000 * 60 * 60 * 24));
     const diaCiclo = diasDesdeInicio % 28;

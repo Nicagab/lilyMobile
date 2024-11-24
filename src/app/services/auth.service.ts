@@ -8,6 +8,7 @@ import Sintoma from '../interfaces/SintomaI';
 import Calendario from '../interfaces/CalendarioI'
 import Dia from '../interfaces/DiaI';
 import Conteudo from '../interfaces/ConteudoI'
+import Publicacao from '../interfaces/PublicacaoI';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -176,5 +177,19 @@ export class AuthService {
     const artigos = await this.httpClient.get<Conteudo[]>(`${this.api}/conteudo/tipo/artigo`).toPromise() || []
 
     return artigos
+   }
+
+   async getPublicacoes(){
+    const publicacoes = await this.httpClient.get<Publicacao[]>(`${this.api}/publicacao`).toPromise() || []
+
+    return publicacoes
+   }
+
+   async createPublicacao(publicacao: Publicacao){
+    try{
+      await this.httpClient.post(`${this.api}/publicacao`, publicacao).toPromise()
+    } catch (error){
+      console.error(error)
+    }
    }
 }
