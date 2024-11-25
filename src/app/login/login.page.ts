@@ -15,7 +15,7 @@ export class LoginPage  {
 
   async login(){
     await this.authService.logar(this.username, this.senha)
-    if(this.authService.isLogged()){
+    if(await this.authService.isLogged()){
       this.router.navigate(['tabs'])
     }
   }

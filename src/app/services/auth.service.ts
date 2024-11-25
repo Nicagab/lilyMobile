@@ -9,10 +9,12 @@ import Calendario from '../interfaces/CalendarioI'
 import Dia from '../interfaces/DiaI';
 import Conteudo from '../interfaces/ConteudoI'
 import Publicacao from '../interfaces/PublicacaoI';
+import DiaSintoma from '../interfaces/DiaSintomaI';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import DiaSintoma from '../interfaces/DiaSintomaI';
+import { Storage } from '@ionic/storage-angular'
+
 
 
 @Injectable({
@@ -25,8 +27,16 @@ export class AuthService {
   usuarioCompleto: UsuarioCompleto = {};
   usuarioSimples: UsuarioSimples = {};
   api = 'http://localhost:3001';
+  storage: Storage | null = null
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router, private _storage: Storage) {
+    this.createStorage()
+  }
+
+  async createStorage(){
+    const storage = await this._storage.create()
+    this.storage = storage
+  }
 
   async getUsuarios() {
     this.usuarios =
@@ -66,7 +76,7 @@ export class AuthService {
       }
 
       await this.logar(user.username, user.senha);
-      if (this.isLogged()) {
+      if (await this.isLogged()) {
         this.router.navigate(['tabs']);
       }
     } catch (error) {
@@ -86,21 +96,24 @@ export class AuthService {
       this.usuarioSimples = this.usuarios.filter(
         (user) => user.username == username
       )[0];
+
+      this.storage?.set('usuario', this.usuarioSimples)
     } else {
       console.log('Usuario não encontrado');
     }
   }
 
-  isLogged() {
-    if (this.usuarioSimples.idUsuario) {
+  async isLogged() {
+    if (await this.storage?.get('usuario')) {
       return true;
     } else {
       return false;
     }
   }
 
-  getUserInfo() {
-    return this.usuarioSimples;
+  async getUserInfo() {
+    const data = await this.storage?.get('usuario')
+    return data
   }
 
   async createCalendario(calendario: Calendario){

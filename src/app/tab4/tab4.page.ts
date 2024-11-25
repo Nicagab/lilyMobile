@@ -18,16 +18,20 @@ export class Tab4Page {
   publicacao: Publicacao = {}
 
   constructor(private authService: AuthService) { 
-    this.getUserInfo()
     this.getPublicacoes()
   }
 
-  getUserInfo(){
-    this.usuario = this.authService.getUserInfo()
+  async ionViewWillEnter(){
+    await this.getUserInfo()
+  }
+
+  async getUserInfo(){
+    this.usuario = await this.authService.getUserInfo()
   }
 
   async getPublicacoes(){
-    this.publicacoes = await this.authService.getPublicacoes()
+    const publicacoes = await this.authService.getPublicacoes()
+    this.publicacoes = publicacoes.reverse()
   }
 
   async createPublicacao(){
@@ -39,5 +43,5 @@ export class Tab4Page {
     this.publicacao = {}
     this.getPublicacoes()
   }
- 
+  
 }

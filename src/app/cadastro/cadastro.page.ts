@@ -12,14 +12,18 @@ import { Router } from '@angular/router';
 export class CadastroPage {
 
   constructor(private authService: AuthService, private router: Router) { 
-    if(this.authService.isLogged()){
-      this.router.navigate(['tabs'])
-    }
+    
   }
 
   usuario: UsuarioSimples = {}
   telefoneC = ''
   telefone: Telefone = {}
+
+  async ionViewWillEnter(){
+    if(await this.authService.isLogged()){
+      this.router.navigate(['tabs'])
+    }
+  }
 
   criarUsuario(){
     this.usuario.tipo = 'comum'

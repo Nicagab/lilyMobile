@@ -12,7 +12,10 @@ import Calendario from '../interfaces/CalendarioI';
 export class Tab2Page {
 
   constructor(private authService: AuthService) {
-    this.getUserInfo()
+  }
+
+  async ionViewWillEnter(){
+    await this.getUserInfo()
   }
 
   usuario: UsuarioSimples = {}
@@ -26,8 +29,8 @@ export class Tab2Page {
     }
   }
 
-  getUserInfo(){
-    this.usuario = this.authService.getUserInfo()
+  async getUserInfo(){
+    this.usuario = await this.authService.getUserInfo()
     console.table(this.usuario)
     this.getCalendarioInfo()
   }

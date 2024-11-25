@@ -56,18 +56,19 @@ export class Tab1Page {
     private menuController: MenuController,
     private authService: AuthService
   ) {
-    this.getUserInfo();
-    this.gerarDias();
     this.getSintomas();
   }
 
-  getUserInfo() {
-    this.usuario = this.authService.getUserInfo();
-    console.log(this.usuario);
+  async ionViewWillEnter(){
+    await this.getUserInfo()
+  }
+
+  async getUserInfo() {
+    this.usuario = await this.authService.getUserInfo();
+    await this.gerarDias();
   }
   async getCalendarioInfo(){
     this.calendario = await this.authService.returnCalendario(this.usuario.idUsuario)
-    console.log(this.calendario)
   }
 
   async createCalendario() {

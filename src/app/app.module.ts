@@ -11,9 +11,11 @@ import { AuthService } from './services/auth.service';
 
 import { provideHttpClient } from '@angular/common/http';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthService, provideHttpClient()],
   bootstrap: [AppComponent],
 })
