@@ -11,13 +11,17 @@ export class LoginPage  {
   username = ''
   senha = ''
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
+  async ionViewWillEnter(){
+    if(await this.authService.isLogged()){
+      this.router.navigate(['tabs'])
+    }
+  }
   async login(){
     await this.authService.logar(this.username, this.senha)
     if(await this.authService.isLogged()){
       this.router.navigate(['tabs'])
     }
   }
-
 }

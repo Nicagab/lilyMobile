@@ -4,10 +4,61 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <section class="mainContainer">
+    <div class="perfilContainer"*ngIf="!modoEdicao">
+      <div class="perfilHeader">
+        <div class="perfilFoto"><ion-icon size="large" name="person-circle-outline"></ion-icon></div><span>&#64;{{usuario.username}}</span>
+        <div class="opcoes">
+          <span [ngStyle]="{'color': opcao === 'config' ? 'blue' : 'black'}" (click)="trocar('config')">Configurações</span>
+          <span [ngStyle]="{'color': opcao === 'atividades' ? 'blue' : 'black'}" (click)="trocar('atividades')">Atividades</span>
+        </div>
+      </div>
+      <div class="perfilBody" *ngIf="opcao==='config'">
+        <ion-input label="Nome Completo" labelPlacement="stacked" type="text" readonly value="{{usuario.nome}}"></ion-input>
+        <ion-input label="Email" labelPlacement="stacked" type="email" readonly value="{{usuario.email}}"></ion-input>
+        <ion-input label="Senha" labelPlacement="stacked" type="password" readonly value="{{usuario.senha}}"></ion-input>
+        <ion-input *ngFor="let telefone of telefones" label="{{telefone.tipo}}" labelPlacement="stacked" type="tel" readonly value="{{telefone.ddd}}{{telefone.numero}}"></ion-input>
+        <ion-input label="Data de nascimento" labelPlacement="stacked" type="date" readonly value="{{dataNasc}}"></ion-input>
+        <div class="editar"><ion-button (click)="habilitarEdicao()">Editar</ion-button></div>
+      </div>
+      <div class="atividadesContainer" *ngIf="opcao==='atividades'">
+        <div class="atividadesHeader">
+        <span [ngStyle]="{'background-color': opcao2==='publicacoes' ? '#55209e': 'white', 'color': opcao2==='publicacoes' ? 'white' : 'black'}" (click)="trocar2('publicacoes')">Publicações</span>
+        <span [ngStyle]="{'background-color': opcao2==='comentarios' ? '#55209e': 'white', 'color': opcao2==='comentarios' ? 'white' : 'black'}" (click)="trocar2('comentarios')">Comentários</span></div>
+        <div class="atividadesBody" *ngIf="opcao2==='publicacoes'">
+          <div class="publicacao" *ngFor="let publi of publicacoes">
+            <h3>{{publi.titulo}} - {{publi.dataPostagem}}</h3>
+            <pre>{{publi.texto}}</pre>
+          </div>
+        </div>
+        <div class="atividadesBody" *ngIf="opcao2==='comentarios'">
+          <div class="publicacao" *ngFor="let coment of comentarios">
+            <h3>***** - {{coment.dataPostagem}}</h3>
+            <pre>{{coment.texto}}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="perfilContainer"*ngIf="modoEdicao">
+      <div class="perfilHeader">
+        <div class="perfilFoto"><ion-icon size="large" name="person-circle-outline"></ion-icon></div><span>&#64;{{usuario.username}}</span>
+        <div class="opcoes">
+          <span [ngStyle]="{'color': opcao === 'config' ? 'blue' : 'black'}" (click)="trocar('config')">Configurações</span>
+          <span [ngStyle]="{'color': opcao === 'atividades' ? 'blue' : 'black'}" (click)="trocar('atividades')">Atividades</span>
+        </div>
+      </div>
+      <div class="perfilBody" *ngIf="opcao==='config'">
+        <ion-input label="Nome Completo" labelPlacement="stacked" type="text" placeholder="{{usuario.nome}}" [(ngModel)]="edicao.nome"></ion-input>
+        <ion-input label="Email" labelPlacement="stacked" type="email" placeholder="{{usuario.email}}" [(ngModel)]="edicao.email"></ion-input>
+        <ion-input label="Senha" labelPlacement="stacked" type="password" placeholder="{{usuario.senha}}" [(ngModel)]="edicao.senha"></ion-input>
+        <ion-input  *ngFor="let telefone of telefones" label="{{telefone.tipo}}" labelPlacement="stacked" type="tel" readonly placeholder="{{telefone.ddd}}{{telefone.numero}}"></ion-input>
+        <ion-input label="Data de nascimento" labelPlacement="stacked" type="date" placeholder="{{dataNasc}}" [(ngModel)]="edicao.dataNasc"></ion-input>
+        <div class="editar"><ion-button (click)="salvar()">Salvar</ion-button></div>
+      </div>
+    </div>
+
+    
+    <span class="excluir">Excluir conta</span>
+  </section>
 </ion-content>

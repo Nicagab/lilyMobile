@@ -1,0 +1,102 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 90vh;
+    background-color: white;
+    color: black;
+}
+
+.perfilContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 90vw;
+    height: fit-content;
+    min-height: 50vh;
+}
+.perfilHeader{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    height: fit-content;
+    border-bottom: 1px solid black;
+}
+.perfilFoto{
+    display: flex;
+    width: 20%;
+}
+.perfilFoto ion-icon{
+    width: 20vw;
+    height: 20vw;
+}
+.opcoes{
+    display: flex;
+    gap: 1vh;
+    flex-direction: column;
+    margin: 1vh;
+    width: 80%;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.opcoes span{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+}
+.perfilBody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 2vh;
+}
+.editar{
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+ion-button{
+    --background: #C99AFB;
+    --color: white;
+}
+.excluir{
+    display: flex;
+    justify-content: flex-end;
+    width: 90vw;
+    height: fit-content;
+    margin: 0.5vh;
+    font-size: 1rem;
+    color: red;
+}
+
+.atividadesContainer{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.atividadesHeader{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.atividadesHeader span{
+    padding: 1vh;
+}
+
+.atividadesBody{
+    display: flex;
+    width: 100%;
+    padding: 1vh;
+    flex-direction: column;
+}

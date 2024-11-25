@@ -32,7 +32,7 @@ export class Tab4Page {
   async getPublicacoes(){
     const publicacoes = await this.authService.getPublicacoes()
     this.publicacoes = publicacoes.reverse()
-  }
+  } 
 
   async createPublicacao(){
     this.publicacao.idUsuario = this.usuario.idUsuario

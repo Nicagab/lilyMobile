@@ -23,21 +23,13 @@ export class Tab2Page {
   hoje = new Date()
   fase = ''
 
-  redirecionarLogin(){
-    if(!this.authService.isLogged()){
-
-    }
-  }
-
   async getUserInfo(){
     this.usuario = await this.authService.getUserInfo()
-    console.table(this.usuario)
     this.getCalendarioInfo()
   }
 
   async getCalendarioInfo(){
     this.calendario = await this.authService.returnCalendario(this.usuario.idUsuario)
-    console.log(this.calendario)
     if(this.calendario.idCalendario){
       this.fase = this.calcularFase(this.hoje, this.calendario.inicioCiclo, this.calendario.duracao)
     }

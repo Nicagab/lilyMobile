@@ -5,17 +5,16 @@ import UsuarioCompleto from '../interfaces/UsuarioCompletoI';
 import Telefone from '../interfaces/TelefoneI';
 import ApiResponse from '../interfaces/ApiResponseI';
 import Sintoma from '../interfaces/SintomaI';
-import Calendario from '../interfaces/CalendarioI'
+import Calendario from '../interfaces/CalendarioI';
 import Dia from '../interfaces/DiaI';
-import Conteudo from '../interfaces/ConteudoI'
+import Conteudo from '../interfaces/ConteudoI';
 import Publicacao from '../interfaces/PublicacaoI';
+import Comentario from '../interfaces/ComentarioI';
 import DiaSintoma from '../interfaces/DiaSintomaI';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular'
-
-
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root',
@@ -23,19 +22,23 @@ import { Storage } from '@ionic/storage-angular'
 export class AuthService {
   usuarios: UsuarioSimples[] = [];
   sintomas: Sintoma[] = [];
-  dias: Dia[] = []
+  dias: Dia[] = [];
   usuarioCompleto: UsuarioCompleto = {};
   usuarioSimples: UsuarioSimples = {};
   api = 'http://localhost:3001';
-  storage: Storage | null = null
+  storage: Storage | null = null;
 
-  constructor(private httpClient: HttpClient, private router: Router, private _storage: Storage) {
-    this.createStorage()
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private _storage: Storage
+  ) {
+    this.createStorage();
   }
 
-  async createStorage(){
-    const storage = await this._storage.create()
-    this.storage = storage
+  async createStorage() {
+    const storage = await this._storage.create();
+    this.storage = storage;
   }
 
   async getUsuarios() {
@@ -52,9 +55,9 @@ export class AuthService {
         .toPromise()) || [];
   }
 
-  async returnSintomas(){
-    await this.getSintomas()
-    return this.sintomas
+  async returnSintomas() {
+    await this.getSintomas();
+    return this.sintomas;
   }
 
   async createUser(user: UsuarioSimples, telefone: Telefone): Promise<void> {
@@ -84,6 +87,16 @@ export class AuthService {
     }
   }
 
+  async updateUser(usuario: any, id: any) {
+    try {
+      await this.httpClient
+        .put(`${this.api}/usuario/${id}`, usuario)
+        .toPromise();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async logar(username: any, senha: any) {
     await this.getUsuarios();
     this.usuarioSimples = {};
@@ -97,7 +110,7 @@ export class AuthService {
         (user) => user.username == username
       )[0];
 
-      this.storage?.set('usuario', this.usuarioSimples)
+      this.storage?.set('usuario', this.usuarioSimples);
     } else {
       console.log('Usuario não encontrado');
     }
@@ -112,97 +125,165 @@ export class AuthService {
   }
 
   async getUserInfo() {
-    const data = await this.storage?.get('usuario')
-    return data
+    const data = await this.storage?.get('usuario');
+    return data;
   }
 
-  async createCalendario(calendario: Calendario){
-    try{
-      await this.httpClient.post(`${this.api}/calendario`, calendario).toPromise()
-    } catch (error){
-      console.log(error)
+  async createCalendario(calendario: Calendario) {
+    try {
+      await this.httpClient
+        .post(`${this.api}/calendario`, calendario)
+        .toPromise();
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  async atualizarCalendario(id: any, calendar: any){
-    try{
-      const calendarios = await this.httpClient.get<Calendario[]>(`${this.api}/calendario`).toPromise() || []
-      const calendario = calendarios.find((data) => data.idUsuario === id) 
+  async atualizarCalendario(id: any, calendar: any) {
+    try {
+      const calendarios =
+        (await this.httpClient
+          .get<Calendario[]>(`${this.api}/calendario`)
+          .toPromise()) || [];
+      const calendario = calendarios.find((data) => data.idUsuario === id);
 
-      await this.httpClient.put(`${this.api}/calendario/${calendario?.idCalendario}`, calendar).toPromise()
-    } catch (error){
-      console.error(error)
+      await this.httpClient
+        .put(`${this.api}/calendario/${calendario?.idCalendario}`, calendar)
+        .toPromise();
+    } catch (error) {
+      console.error(error);
     }
   }
 
-  async getCalendario(id: any){
-    const calendarios = await this.httpClient.get<Calendario[]>(`${this.api}/calendario`).toPromise() || []
-    const calendario = calendarios.find((calendar) => calendar.idUsuario === id) || false
+  async getCalendario(id: any) {
+    const calendarios =
+      (await this.httpClient
+        .get<Calendario[]>(`${this.api}/calendario`)
+        .toPromise()) || [];
+    const calendario =
+      calendarios.find((calendar) => calendar.idUsuario === id) || false;
 
-    if(calendario){
-      return true
+    if (calendario) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
-   async returnCalendario(id: any){
-    const calendarios = await this.httpClient.get<Calendario[]>(`${this.api}/calendario`).toPromise() || []
-    const calendario = calendarios.find((calendar) => calendar.idUsuario === id) || {}
+  async returnCalendario(id: any) {
+    const calendarios =
+      (await this.httpClient
+        .get<Calendario[]>(`${this.api}/calendario`)
+        .toPromise()) || [];
+    const calendario =
+      calendarios.find((calendar) => calendar.idUsuario === id) || {};
 
     return calendario;
-   }
+  }
 
-   async createDia(dia: any, diasSintomas: any){
-    const diaResponse = await this.httpClient.post<ApiResponse>(`${this.api}/dia`, dia).toPromise()
+  async createDia(dia: any, diasSintomas: any) {
+    const diaResponse = await this.httpClient
+      .post<ApiResponse>(`${this.api}/dia`, dia)
+      .toPromise();
 
-    if(diaResponse && diasSintomas.length>0){
-      diasSintomas.map(async(diaSintoma: any) => {
-        diaSintoma.idDia = diaResponse.insertId
-        await this.httpClient.post(`${this.api}/diaSintoma`, diaSintoma).toPromise()
-      })
+    if (diaResponse && diasSintomas.length > 0) {
+      diasSintomas.map(async (diaSintoma: any) => {
+        diaSintoma.idDia = diaResponse.insertId;
+        await this.httpClient
+          .post(`${this.api}/diaSintoma`, diaSintoma)
+          .toPromise();
+      });
     }
-   }
+  }
 
-   async deleteDay(dia: any) {
+  async deleteDay(dia: any) {
     try {
-      const diaResponse = await this.httpClient.delete<ApiResponse>(`${this.api}/dia/${dia.idDia}`).toPromise();
+      const diaResponse = await this.httpClient
+        .delete<ApiResponse>(`${this.api}/dia/${dia.idDia}`)
+        .toPromise();
       if (diaResponse) {
-        const diasSintomas = await this.httpClient.get<DiaSintoma[]>(`${this.api}/diaSintoma`).toPromise() || [];
-        const diasSintomaFilter = diasSintomas.filter((diaSintoma) => diaSintoma.idDia === dia.idDia);
-  
+        const diasSintomas =
+          (await this.httpClient
+            .get<DiaSintoma[]>(`${this.api}/diaSintoma`)
+            .toPromise()) || [];
+        const diasSintomaFilter = diasSintomas.filter(
+          (diaSintoma) => diaSintoma.idDia === dia.idDia
+        );
+
         for (const diaSintoma of diasSintomaFilter) {
-          await this.httpClient.delete(`${this.api}/diaSintoma/${diaSintoma.idDiaSintoma}`).toPromise();
+          await this.httpClient
+            .delete(`${this.api}/diaSintoma/${diaSintoma.idDiaSintoma}`)
+            .toPromise();
         }
       }
     } catch (error) {
-      console.error("Erro ao deletar dia:", error);
+      console.error('Erro ao deletar dia:', error);
     }
   }
 
-   async getDias(calendario: any){
-    const dias = await this.httpClient.get<Dia[]>(`${this.api}/dia`).toPromise() || []
-    this.dias = dias.filter((dia)=> dia.idCalendario === calendario.idCalendario)
-    return this.dias
-   }
+  async getDias(calendario: any) {
+    const dias =
+      (await this.httpClient.get<Dia[]>(`${this.api}/dia`).toPromise()) || [];
+    this.dias = dias.filter(
+      (dia) => dia.idCalendario === calendario.idCalendario
+    );
+    return this.dias;
+  }
 
-   async getArtigos(){
-    const artigos = await this.httpClient.get<Conteudo[]>(`${this.api}/conteudo/tipo/artigo`).toPromise() || []
+  async getArtigos() {
+    const artigos =
+      (await this.httpClient
+        .get<Conteudo[]>(`${this.api}/conteudo/tipo/artigo`)
+        .toPromise()) || [];
 
-    return artigos
-   }
+    return artigos;
+  }
 
-   async getPublicacoes(){
+  async getPublicacoes() {
+    const publicacoes =
+      (await this.httpClient
+        .get<Publicacao[]>(`${this.api}/publicacao`)
+        .toPromise()) || [];
+
+    return publicacoes;
+  }
+
+  async createPublicacao(publicacao: Publicacao) {
+    try {
+      await this.httpClient
+        .post(`${this.api}/publicacao`, publicacao)
+        .toPromise();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getTelefones(usuario: any) {
+    const telefones =
+      (await this.httpClient
+        .get<Telefone[]>(`${this.api}/telefone`)
+        .toPromise()) || [];
+
+    const telefonesUsuario = telefones.filter(
+      (telefone) => telefone.idUsuario === usuario.idUsuario
+    );
+
+    return telefonesUsuario;
+  }
+
+  async getPublicacoesUser(usuario: any){
     const publicacoes = await this.httpClient.get<Publicacao[]>(`${this.api}/publicacao`).toPromise() || []
 
-    return publicacoes
-   }
+    const userPublicacoes = publicacoes.filter((publicacao)=> publicacao.idUsuario === usuario.idUsuario)
 
-   async createPublicacao(publicacao: Publicacao){
-    try{
-      await this.httpClient.post(`${this.api}/publicacao`, publicacao).toPromise()
-    } catch (error){
-      console.error(error)
-    }
-   }
+    return userPublicacoes
+  }
+
+  async getComentariosUser(usuario: any){
+    const comentarios = await this.httpClient.get<Comentario[]>(`${this.api}/comentario`).toPromise() || []
+
+    const userComentarios = comentarios.filter((comentario)=> comentario.idUsuario === usuario.idUsuario)
+
+    return userComentarios
+  }
 }
