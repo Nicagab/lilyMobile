@@ -46,7 +46,7 @@
       </div>
 
       <div class="artigos" *ngIf="!pesquisa">
-        <div class="artigo" *ngFor="let artigo of artigos">
+        <div class="artigo" *ngFor="let artigo of artigos" (click)="abrirArtigo(artigo)">
           <h4>{{artigo.titulo}}</h4>
           <pre>{{artigo.resumo}}</pre>
           <ion-chip color="{{artigo.palavraChave === 'menstruacao' ? 'danger' : ((artigo.palavraChave === 'saude' ? 'secondary' : 'success'))}}">{{artigo.palavraChave}}</ion-chip>

@@ -19,19 +19,53 @@
 h3{
     text-align: center;
 }
-.faseCirculo{
+.faseCirculo {
+    position: relative; /* Necessário para posicionamento absoluto dos spans */
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30vh;
     height: 30vh;
-    justify-content: center;
-    align-items: center; 
-    text-align: center;
     border-radius: 50%;
     color: black;
     font-size: 2rem;
     border: 5vw solid gray;
+    transform: rotate(45deg);
 }
 
+.faseCirculo span {
+    position: absolute;
+    z-index: 10;
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.08);
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-45deg);
+}
+
+/* Posicionamento específico para cada fase */
+.faseCirculo.menstrual span {
+    top: -5vh; /* Centro da borda superior */
+    left: calc(50% - 5vh);
+}
+
+.faseCirculo.folicular span {
+    right: -5vh; /* Centro da borda direita */
+    top: calc(50% - 5vh);
+}
+
+.faseCirculo.ovulacao span {
+    left: -5vh; /* Centro da borda esquerda */
+    top: calc(50% - 5vh);
+}
+
+.faseCirculo.lutea span {
+    bottom: -5vh; /* Centro da borda inferior */
+    left: calc(50% - 5vh);
+}
 .menstrual{
     border-top: 5vw solid #ec7171;
 }
@@ -46,4 +80,9 @@ h3{
 
 .lutea{
    border-bottom: 5vw solid whitesmoke; 
+}
+
+ion-chip{
+    display: flex;
+    flex-direction: column;
 }

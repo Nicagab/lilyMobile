@@ -180,12 +180,28 @@ export class Tab1Page {
     const dataInicioCiclo = new Date(inicioCiclo);
 
     const diasDesdeInicio = Math.floor((dataAtual.getTime() - dataInicioCiclo.getTime()) / (1000 * 60 * 60 * 24));
-    const diaCiclo = diasDesdeInicio % 28;
+    const diaCiclo = ((diasDesdeInicio % 28) + 28) % 28;
 
-    if (diaCiclo >= 0 && diaCiclo < Number(duracao)) return 'menstrual';
-    if (diaCiclo === 13) return 'ovulacao';
-    if (diaCiclo >= 9 && diaCiclo <= 14) return 'folicular';
-    return 'lutea';
+    if (diaCiclo >= 0 && diaCiclo <= duracao) {
+        // Fase Menstrual
+        return `menstrual`;
+    } else if (diaCiclo > duracao && diaCiclo < 9) {
+        // Fase Lútea Transitória
+        return `lutea`;
+    }
+    else if (diaCiclo === 13) {
+      // Ovulação
+      return `ovulacao`;
+  } else if (diaCiclo >= 9 && diaCiclo <= 14) {
+        // Fase Folicular
+        return `folicular`;
+    } else if (diaCiclo > 14 && diaCiclo < 28) {
+        // Fase Lútea
+        return 'lutea';
+    } else {
+        // Ajuste em caso de erro
+        return `erro`;
+    }
 }
 
   async gerarDias() {

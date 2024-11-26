@@ -26,11 +26,13 @@
       <h3>Crie seu calendario menstrual e receba informações sobre seu dia em base no seu ciclo</h3>
     </section>
   <section class="mainContainer" *ngIf="calendario.idCalendario">
-    <div class="faseCirculo {{fase}}">{{fase}}</div>
+    <div class="faseCirculo {{fase}}"><span>{{faseVisivel}}</span></div>
     <div class="informações">
-      <ion-chip color="danger">Aquelas infos la</ion-chip>
+      <ion-chip color="{{chipColor}}"><span><ion-icon src="../../assets/icons/{{proximaFase}}.svg"></ion-icon></span>{{diasRestantes}} dias</ion-chip>
     </div>
-    
+    <div class="eventosContainer">
+      <h3>Próximos eventos</h3>
+    </div>
   </section>  
   </ion-content>
 </div>

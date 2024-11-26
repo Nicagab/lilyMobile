@@ -30,6 +30,22 @@ const routes: Routes = [
   {
     path: 'tab5',
     loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
+  {
+    path: 'artigo',
+    loadChildren: () => import('./artigo/artigo.module').then( m => m.ArtigoPageModule)
+  },
+  {
+    path: 'noticia',
+    loadChildren: () => import('./noticia/noticia.module').then( m => m.NoticiaPageModule)
+  },
+  {
+    path: 'grafico',
+    loadChildren: () => import('./grafico/grafico.module').then( m => m.GraficoPageModule)
+  },
+  {
+    path: 'publicacao',
+    loadChildren: () => import('./publicacao/publicacao.module').then( m => m.PublicacaoPageModule)
   }
 ];
 @NgModule({

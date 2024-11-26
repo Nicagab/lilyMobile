@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 
 import Conteudo from '../interfaces/ConteudoI'
 
+import { NavigationExtras, Router } from '@angular/router';
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -11,7 +13,7 @@ import Conteudo from '../interfaces/ConteudoI'
 })
 export class Tab3Page {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, public router: Router) {
     this.getArtigos()
   }
 
@@ -28,4 +30,8 @@ export class Tab3Page {
     this.artigosF = this.artigos.filter((data) => data.titulo?.toLowerCase().match(new RegExp(this.pesquisa.toLowerCase())))
   }
 
+  abrirArtigo(artigo: any){
+    const navigationExtras: NavigationExtras = {state:{paramArtigo: artigo}}
+    this.router.navigate(['artigo'],navigationExtras)
+  }
 }

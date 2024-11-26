@@ -11,6 +11,7 @@ import Conteudo from '../interfaces/ConteudoI';
 import Publicacao from '../interfaces/PublicacaoI';
 import Comentario from '../interfaces/ComentarioI';
 import DiaSintoma from '../interfaces/DiaSintomaI';
+import Topico from '../interfaces/TopicoI'
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -285,5 +286,13 @@ export class AuthService {
     const userComentarios = comentarios.filter((comentario)=> comentario.idUsuario === usuario.idUsuario)
 
     return userComentarios
+  }
+
+  async getTopicos(artigo: any){
+    const topicos = await this.httpClient.get<Topico[]>(`${this.api}/topico`).toPromise() || []
+
+    const topicosF = topicos.filter((topico) => topico.idConteudo === artigo.idConteudo)
+
+    return topicosF.sort((a: any,b: any)=> a.posicao-b.posicao)
   }
 }
