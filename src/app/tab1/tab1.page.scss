@@ -16,130 +16,155 @@ html {
   color: black;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem;
 }
-.funcoes {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 95%;
-  margin: 1vh;
-  gap: 3vh;
-}
+
 .calendario {
   display: flex;
-  width: 95vw;
   flex-direction: column;
-  margin: 1vw;
+  width: 90%;
+  max-width: 400px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
 }
-.calendario_header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-}
+
 .calendario_info {
   display: flex;
-  width: 100%;
-  padding: 1vw;
-  flex-direction: row;
-  justify-content: space-around;
-  border: 1px solid black;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background-color: #c99afb;
-}
-.calendario_info span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.calendario_weekdays {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  padding: 0.3rem;
+  background-color: #a24be7;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
+
+.funcoes {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+
+.funcoes ion-icon {
+  font-size: 1.5rem;
+  color: #5f6368;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.funcoes ion-icon:hover {
+  transform: scale(1.2);
+}
+
+.calendario_weekdays {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  background-color: #f2f2f2;
+  color: #555;
+  font-weight: 600;
+}
+
 .weekday {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5vh;
-  margin: 0.5vw;
+  text-align: center;
+  width: 14%;
 }
+
 .calendario_body {
-  display: flex;
-  width: 100%;
-  padding: 0.3vw;
-  height: fit-content;
-  justify-content: flex-start;
-  gap: 0.2vw;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: white;
-  border: 1px solid black;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  padding: 0.7rem;
+  background-color: #fff;
 }
+
 .day {
   display: flex;
   width: 12vw;
-  height: 12vw;
-  margin: 0.5vw;
+  height: 5vh;
   justify-content: center;
   align-items: center;
-  // border: 1px solid black;
-  border-radius: 50%;
-  background-color: white;
+  border-radius: 8px;
+  background-color: #f9f9f9;
   color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-.menstrual {
-  background-color: #ec7171;
-}
-.folicular {
-  background-color: #71ec71;
-}
-.ovulacao {
-  background-color: #eaec71;
-}
-.lutea {
-  background-color: white;
-}
-.hoje {
-  background-color: #55209e;
+
+.day:hover {
+  background-color: #a24be7;
   color: white;
 }
+
+.menstrual {
+  background-color: rgba(236, 113, 113, 0.3);
+}
+
+.folicular {
+  background-color: rgba(113, 236, 113, 0.3);
+}
+
+.ovulacao {
+  background-color: rgba(234, 236, 113, 0.3);
+}
+
+.hoje {
+  background-color: #a24be7;
+  color: white;
+}
+
 .nullday {
-  display: flex;
-  margin: 0.5vw;
-  width: 12vw;
-  height: 12vw;
+  visibility: hidden;
 }
+
 .legenda {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 1vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+  margin-top: 20px;
 }
+
 .itemLegenda {
   display: flex;
-  gap: 0.5vw;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
+
 .itemLegenda div {
-  display: flex;
-  width: 3vh;
-  height: 3vh;
-  // border: 1px solid black;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
 }
-.menuDiaHeader {
-  --background: #c99afb;
+
+
+
+// css do dia tal 
+
+ion-menu {
+  --width: 370px;
+  --max-width: 100%;
+  outline: none;
 }
+
+.menuDiaHeader {
+  --background: #a24be7;
+  font-size: 1.2rem;
+  width: 100%;
+  height: 120%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+
+}
+
 .menuDiaBody {
   display: flex;
   flex-direction: column;
@@ -147,8 +172,10 @@ html {
   height: 100%;
   background-color: white;
   color: black;
-  gap: 1vh;
+  gap: 1.8vh;
+  
 }
+
 .emocional {
   display: flex;
   width: 100%;
@@ -156,7 +183,9 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2vh;
 }
+
 .emocional_body {
   display: flex;
   width: 100%;
@@ -164,6 +193,7 @@ html {
   padding: 0.5vh;
   flex-direction: row;
 }
+
 .emocional_body div {
   display: flex;
   width: 100%;
@@ -171,6 +201,7 @@ html {
   justify-content: center;
   flex-direction: column;
 }
+
 .sintomas {
   display: flex;
   width: 100%;
@@ -179,6 +210,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .sintomas_body {
   display: flex;
   flex-direction: row;
@@ -186,17 +218,32 @@ html {
   height: fit-content;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 1.5vh;
+  gap: 1vh;
+
 }
+
 .sintoma {
   display: flex;
   flex-direction: column;
-  width: 7vh;
+  width: 9vh;
   height: fit-content;
   align-items: center;
   justify-content: center;
   gap: 0.3vh;
+  border-radius: 10px;
+  padding: 6px;
 }
+.emoji {
+  font-size: 1.2rem;
+}
+.sintoma:hover {
+  border-radius: 10px;
+}
+.h3 {
+  color: #555;
+  font-weight: bold;
+}
+
 .anotacoes {
   display: flex;
   flex-direction: column;
@@ -204,16 +251,26 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 textarea {
   background-color: white;
+  border-radius: 5px;
+  width: 90%;
+  height: 12vh;
+  outline: none;
+  padding: 0.5vw;
+
 }
+
 ion-button {
-  --background: #c99afb;
+  --background: #a24be7;
   --color: white;
 }
+
 .disabled {
   display: none;
 }
+
 .alert-wrapper .classesuperespecifica {
   --background: white;
   color: black;

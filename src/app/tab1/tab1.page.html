@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <a [routerLink]="['/perfil']">Editar Perfil</a><br />
+    <a [routerLink]="['/perfil']">Perfil</a><br />
     <a [routerLink]="['/sobre']">Sobre nós</a>
   </ion-content>
 </ion-menu>
@@ -13,13 +13,13 @@
 <ion-menu side="end" menuId="menuDia" contentId="main-content">
   <ion-header>
     <ion-toolbar class="menuDiaHeader">
-      {{diaVClicado.dataZ}} - {{diaVClicado.fase}}
+      {{diaVClicado.dataZ}} <br> {{diaVClicado.fase}}
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <section class="menuDiaBody">
       <section class="emocional">
-        <h3>Como você está se sentindo?</h3>
+        <h3 class="h3">Como você está se sentindo?</h3>
         <div class="emocional_body">
         <div><ion-icon (click)="definirEmocional('Ótimo')" color="{{diaClicado.emocional=== 'Ótimo' ? 'success' : 'black'}}" size="large" src="../../assets/icons/face-smile-beam-regular.svg"></ion-icon><span>Ótimo</span></div>
         <div><ion-icon (click)="definirEmocional('Bem')" color="{{diaClicado.emocional=== 'Bem' ? 'success' : 'black'}}"size="large" src="../../assets/icons/face-smile-regular.svg"></ion-icon><span>Bem</span></div>
@@ -30,20 +30,20 @@
       </section>
       <section>
         <div class="sintomas">
-          <h3>Sintomas Emocionais</h3>
+          <h3 class="h3">Sintomas Emocionais</h3>
           <div class="sintomas_body" *ngIf="sintomasEmocionais.length>0">
-            <div class="sintoma" *ngFor="let sintomaEmocional of sintomasEmocionais" [ngStyle]="{'background-color': getDiaSintoma(sintomaEmocional) ? 'green' : 'white'}" (click)="definirDiaSintoma(sintomaEmocional)"><span class="emoji">{{makeEmoji(sintomaEmocional.emoji)}}</span><span class="emojiNome">{{sintomaEmocional.nome}}</span></div>
+            <div class="sintoma" *ngFor="let sintomaEmocional of sintomasEmocionais" [ngStyle]="{'background-color': getDiaSintoma(sintomaEmocional) ? 'rgba(113, 236, 113, 0.3)' : 'white'}" (click)="definirDiaSintoma(sintomaEmocional)"><span class="emoji">{{makeEmoji(sintomaEmocional.emoji)}}</span><span class="emojiNome">{{sintomaEmocional.nome}}</span></div>
           </div>
         </div>
         <div class="sintomas">
-          <h3>Sintomas físicos</h3>
+          <h3 class="h3">Sintomas físicos</h3>
           <div class="sintomas_body" *ngIf="sintomasFisicos.length>0">
-            <div class="sintoma" *ngFor="let sintomaFisico of sintomasFisicos" [ngStyle]="{'background-color': getDiaSintoma(sintomaFisico) ? 'green' : 'white'}" (click)="definirDiaSintoma(sintomaFisico)"><span class="emoji">{{makeEmoji(sintomaFisico.emoji)}}</span><span class="emojiNome">{{sintomaFisico.nome}}</span></div>
+            <div class="sintoma" *ngFor="let sintomaFisico of sintomasFisicos" [ngStyle]="{'background-color': getDiaSintoma(sintomaFisico) ? 'rgba(113, 236, 113, 0.3)' : 'white'}" (click)="definirDiaSintoma(sintomaFisico)"><span class="emoji">{{makeEmoji(sintomaFisico.emoji)}}</span><span class="emojiNome">{{sintomaFisico.nome}}</span></div>
           </div>
         </div>
       </section>
       <section class="anotacoes">
-        <h3>Faça qualquer anotação extra aqui</h3>
+        <h3 class="h3">Anotações</h3>
         <textarea [(ngModel)]="diaClicado.anotacao"></textarea>
       </section>
       <ion-button (click)="salvarDia()" expand="block">Salvar</ion-button>
@@ -123,6 +123,7 @@
           <span>Fase Lútea</span>
         </div>
       </div>
+      
     </section>
   </ion-content>
 </div>
