@@ -45,11 +45,21 @@ img{
 }
 .form-item{
     --background: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    color: black;
+    border: 1px solid grey;
+    border-radius: 6px;
+    color: grey;
     outline: none;
-    --color: black;
+    --color: grey;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    
+}
+.form-item ion-icon {
+    margin-right: 12px;
+}
+.form-item ion-input {
+    padding-left: 0px;
 }
 
 .form-input{
@@ -58,19 +68,24 @@ img{
 }
 
 ion-button{
-    --background: #55209E;
+    --background: #a24be7;
     --color: white;
+}
+.h1 {
+    font-weight: bold;
+    margin-top: -1vw;
 }
 
 span{
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    margin-left: 10px;
 }
 
 .form-checkbox{
     --checkbox-background: white;
     --border-color: black;
+    margin-right: 10px;
 }
 
 a{

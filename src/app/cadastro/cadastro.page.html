@@ -1,7 +1,7 @@
 <main class="main">
   <img src="../../assets/imgs/login1.jpg"/>
   <div class="container">
-    <h1>Bem vindo ao Lily!</h1>
+    <h1 class="h1">Cadastro</h1>
     <section class="containerCadastro">
       <ion-item class="form-item"
         ><ion-icon name="person-outline" color="black"></ion-icon
@@ -72,7 +72,7 @@
           [(ngModel)]="usuario.dataNasc"
         ></ion-input
       ></ion-item>
-        <span><ion-label>Aceito os <a>termos</a> de uso</ion-label><ion-checkbox class="form-checkbox"></ion-checkbox></span>
+        <span><ion-checkbox class="form-checkbox"></ion-checkbox><ion-label>Aceito os <a>termos de uso</a></ion-label></span>
       <ion-button expand="block" (click)="criarUsuario()">Cadastrar</ion-button>
     </section>
   </div>
