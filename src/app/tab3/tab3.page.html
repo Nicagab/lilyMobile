@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <a [routerLink]="['/perfil']">Editar Perfil</a><br>
+    <a [routerLink]="['/perfil']">Perfil</a><br>
     <a [routerLink]="['/sobre']">Sobre nós</a>
   </ion-content>
 </ion-menu>
@@ -23,11 +23,19 @@
   <ion-content>
     <section class="mainContainer">
       <div class="pesquisar">
-        <ion-item> 
+        <ion-item class="busca"> 
           <ion-icon name="search-outline"></ion-icon> 
           <ion-input type="search" [(ngModel)]="pesquisa" (ngModelChange)="getArtigosF()"></ion-input>
         </ion-item>
       </div>
+
+      <h3 class="h3">categorias</h3>
+      <div class="categorias">
+        <ion-chip class="categoria1" color="danger">Menstruação</ion-chip>
+        <ion-chip class="categoria2" color="tertiary">Saúde</ion-chip>
+        <ion-chip class="categoria3" color="success">Higiene</ion-chip>
+        <ion-chip class="categoria4" color="pink">Dicas</ion-chip>
+      </div>      
 
       <div class="artigos" *ngIf="pesquisa">
         <div class="artigo" *ngFor="let artigoF of artigosF">
