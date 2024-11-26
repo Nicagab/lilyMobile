@@ -1,13 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>publicacao</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="white"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publicacao: {{publicacao.idPublicacao}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">publicacao</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <section class="mainContainer">
+    <div class="publicacoes">
+      <div class="publicacao">
+        <h2>{{publicacao.nomeUsuario}} - {{publicacao.tipoUsuario}}</h2>
+        <h3>{{publicacao.titulo}} - {{publicacao.dataPostagem}}</h3>
+        <pre>{{publicacao.texto}}</pre>
+      </div>
+      <div class="publicacao" *ngFor="let comentario of comentariosV">
+        <h2>{{comentario.nomeUsuario}} - {{comentario.tipoUsuario}}</h2>
+        <h3>{{comentario.titulo}} - {{comentario.dataPostagem}}</h3>
+        <pre>{{comentario.texto}}</pre>
+      </div>
+    </div>
+  </section>
 </ion-content>

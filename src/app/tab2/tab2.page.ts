@@ -86,7 +86,7 @@ export class Tab2Page {
       return `lutea-folicular-${9 - diaCiclo}`;
     } else if (diaCiclo === 13) {
       // Ovulação
-      return `ovulacao-lutea-${15 - diaCiclo}`;
+      return `ovulacao-folicular-${1}`;
     } else if (diaCiclo >= 9 && diaCiclo <= 14) {
       // Fase Folicular
       return `folicular-ovulacao-${14 - diaCiclo}`;

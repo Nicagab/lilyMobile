@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { GraficoPageRoutingModule } from './grafico-routing.module';
 
 import { GraficoPage } from './grafico.page';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GraficoPageRoutingModule
+    GraficoPageRoutingModule,
+    GoogleChartsModule
   ],
   declarations: [GraficoPage]
 })

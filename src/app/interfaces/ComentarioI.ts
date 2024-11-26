@@ -1,5 +1,5 @@
 interface Comentario{
-    idComentariow: number;
+    idComentario: number;
     texto?: string;
     dataPostagem?: string;
     idUsuario?: number;

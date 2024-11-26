@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab5</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">tab5</ion-title>
+      <ion-title> Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+  <ion-content class="ion-padding">
+    <a [routerLink]="['/perfil']">Perfil</a><br>
+    <a [routerLink]="['/sobre']">Sobre nós</a>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle><ion-icon size="large" name="person-circle-outline"></ion-icon></ion-menu-toggle>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <section class="mainContainer">
+
+      <div class="noticias">
+        <div class="noticia" *ngFor="let noticia of noticiasV" (click)="abrirNoticia(noticia)" [style.background-image]="'url(http://localhost:3001/public' + noticia.imagem + ')'">
+          <h4>{{noticia.titulo}}</h4>
+          <pre>{{noticia.resumo}}</pre>
+          <ion-chip color="{{noticia.palavraChave === 'menstruacao' ? 'danger' : ((noticia.palavraChave === 'saude' ? 'secondary' : 'success'))}}">{{noticia.palavraChave}}</ion-chip>
+        </div>
+      </div>
+    </section>
+  </ion-content>
+</div>

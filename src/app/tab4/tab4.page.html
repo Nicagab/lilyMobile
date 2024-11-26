@@ -29,7 +29,8 @@
         <ion-icon name="send" (click)="createPublicacao()"></ion-icon>
       </div>
       <div class="publicacoes">
-        <div class="publicacao" *ngFor="let publi of publicacoes">
+        <div class="publicacao" *ngFor="let publi of publicacoesV" (click)="abrirPublicacao(publi)">
+          <h2>{{publi.nomeUsuario}} - {{publi.tipoUsuario}}</h2>
           <h3>{{publi.titulo}} - {{publi.dataPostagem}}</h3>
           <pre>{{publi.texto}}</pre>
         </div>

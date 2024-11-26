@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="white"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{noticia.palavraChave}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section *ngIf="noticia">
+    <h3>{{noticia.titulo}}</h3>
+    <pre>{{noticia.texto}}</pre>
+    <div class="topicos" *ngFor="let topico of topicos">
+      <h3>{{topico.titulo}}</h3>
+      <pre>{{topico.texto}}</pre>
+    </div>
+  </section>
+</ion-content>

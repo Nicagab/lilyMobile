@@ -1,0 +1,16 @@
+section{
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+    width: 100vw;
+    height: fit-content;
+    min-height: 80vh;
+    background-color: white;
+    color: black;
+}
+
+pre{
+    display: flex;
+    text-align: justify;
+    text-wrap: wrap;
+}

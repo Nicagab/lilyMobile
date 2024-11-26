@@ -20,7 +20,8 @@ h3{
     text-align: center;
 }
 .faseCirculo {
-    position: relative; /* Necessário para posicionamento absoluto dos spans */
+    position: relative;
+    margin: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;

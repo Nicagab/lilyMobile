@@ -13,9 +13,11 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+import { GoogleChartsModule, GoogleChartComponent } from 'angular-google-charts';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), GoogleChartsModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthService, provideHttpClient()],
   bootstrap: [AppComponent],
 })

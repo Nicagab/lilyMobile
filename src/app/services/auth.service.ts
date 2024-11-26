@@ -12,6 +12,7 @@ import Publicacao from '../interfaces/PublicacaoI';
 import Comentario from '../interfaces/ComentarioI';
 import DiaSintoma from '../interfaces/DiaSintomaI';
 import Topico from '../interfaces/TopicoI'
+import Imagem from '../interfaces/ImagemI';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -47,6 +48,11 @@ export class AuthService {
       (await this.httpClient
         .get<UsuarioSimples[]>(`${this.api}/usuario`)
         .toPromise()) || [];
+  }
+
+  async returnUsuarios(){
+    await this.getUsuarios()
+    return this.usuarios
   }
 
   async getSintomas() {
@@ -240,6 +246,15 @@ export class AuthService {
     return artigos;
   }
 
+  async getNoticias() {
+    const noticias =
+      (await this.httpClient
+        .get<Conteudo[]>(`${this.api}/conteudo/tipo/noticia`)
+        .toPromise()) || [];
+
+    return noticias;
+  }
+
   async getPublicacoes() {
     const publicacoes =
       (await this.httpClient
@@ -294,5 +309,23 @@ export class AuthService {
     const topicosF = topicos.filter((topico) => topico.idConteudo === artigo.idConteudo)
 
     return topicosF.sort((a: any,b: any)=> a.posicao-b.posicao)
+  }
+
+  async getComentarios(comentario: any){
+    const comentarios = await this.httpClient.get<Comentario[]>(`${this.api}/comentario`).toPromise() || []
+
+    const comentariosF = comentarios.filter((comentario) => comentario.idComentario === comentario.idPublicacao)
+
+    return comentariosF.sort((a: any,b: any)=> a.posicao-b.posicao)
+  }
+
+  async getImagens(){
+    const imagens = await this.httpClient.get<Imagem[]>(`${this.api}/imagem`).toPromise() || []
+    return imagens
+  }
+
+  async getCalendarioById(usuario: any){
+    const calendario = await this.httpClient.get(`${this.api}/calendario/${usuario.idUsuario}`).toPromise() || []
+    return calendario
   }
 }
